@@ -1,23 +1,50 @@
-import logo from './logo.svg';
+import { useCallback, useEffect, useState } from 'react';
 import './App.css';
+import DataTable from './components/DataTable';
+import Api from './services/apiCalls';
 
 function App() {
+  const [tableData, setTableData] = useState([]);
+  const [tableDataError, setTableDataError] = useState('');
+  const columnData = [
+    {
+      id: "checkbox",
+      label: "Product Check"
+    },
+    {
+      id: "product",
+      label: "Product",
+      numeric: false,
+      width: "400px",
+      isSortable: true
+    },
+    {
+      id: "image",
+      label: "Image",
+      numeric: true,
+      isSortable: false
+    }
+  ];
+  useEffect(() => {
+    const api = new Api();
+    api
+      .getPhotosList()
+      .then((result) => setTableData(result.data))
+      .catch((error) => setTableDataError(error));
+  }, []);
+  console.log(columnData)
+  const onRowClick = useCallback((id, sort) => {
+    const sortedData = tableData;
+    sort ? sortedData.sort((a, b) => a.title < b.title ? 1 : -1) : sortedData.sort((a, b) => a.title > b.title ? 1 : -1);
+    setTableData([...sortedData]);
+  }, [tableData]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {tableDataError ? 
+        <div>Error Found!</div> :
+        <DataTable rowData={tableData} columnData={columnData}  onRowClick={onRowClick}/>
+      }
     </div>
   );
 }
