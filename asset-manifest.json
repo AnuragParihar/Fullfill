@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/fullfill-app/static/css/main.22ea66e6.css",
+    "main.js": "/fullfill-app/static/js/main.d28475e4.js",
+    "static/js/787.0d07fe58.chunk.js": "/fullfill-app/static/js/787.0d07fe58.chunk.js",
+    "index.html": "/fullfill-app/index.html",
+    "main.22ea66e6.css.map": "/fullfill-app/static/css/main.22ea66e6.css.map",
+    "main.d28475e4.js.map": "/fullfill-app/static/js/main.d28475e4.js.map",
+    "787.0d07fe58.chunk.js.map": "/fullfill-app/static/js/787.0d07fe58.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.22ea66e6.css",
+    "static/js/main.d28475e4.js"
+  ]
+}
